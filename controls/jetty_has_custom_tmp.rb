@@ -14,7 +14,7 @@ control "jetty_has_custom_tmp" do
     its('content') { should include "-Djava.io.tmpdir=/var/opt/jetty/tmp"}
   end
 
-  describe command('ps -aux | grep  /usr/lib/jvm/zulu-8-amd64/jre/bin/java') do
+  describe command('ps -aux | grep /usr/lib/jvm/java') do
     its('stdout') { should include "-Djava.io.tmpdir=/var/opt/jetty/tmp" }
   end
 

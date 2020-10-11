@@ -1,19 +1,19 @@
 control "java_version" do
   impact 1.0
-  title "Zulu Java is installed correctly"
-  desc "Default OpenJDK Java should not be used: either Zulu or Oracle Java should be installed"
+  title "Amazon Corretto Java is installed correctly"
+  desc "Default OpenJDK Java should not be used: either Amazon Corretto Java or Oracle Java should be installed"
 
-  describe apt('http://repos.azulsystems.com/debian') do
+  describe apt('https://apt.corretto.aws') do
     it { should exist }
     it { should be_enabled }
   end
 
-  describe package('zulu-8') do
+  describe package('java-11-amazon-corretto-jdk') do
     it { should be_installed }
-    its('version') { should >= '8.21.0.1' }
+    its('version') { should >= '1:11.0.8.10-1' }
   end
 
-  describe file('/usr/lib/jvm/zulu-8-amd64') do
+  describe file('/usr/lib/jvm/java-11-amazon-corretto') do
     it {should exist}
   end
 
@@ -21,13 +21,17 @@ control "java_version" do
     it { should_not be_installed }
   end
 
+  describe package('openjdk-11-jdk') do
+    it { should_not be_installed }
+  end
+
   describe os_env('JAVA_HOME') do
-    its('content') { should eq "/usr/lib/jvm/zulu-8-amd64" }
+    its('content') { should eq "/usr/lib/jvm/java-11-amazon-corretto" }
   end
 
   describe command('java -version') do
-    its('stderr') { should include 'openjdk version "1.8.0' }
-    its('stderr') { should include 'Zulu' }
+    its('stderr') { should include 'openjdk version "11' }
+    its('stderr') { should include 'Corretto' }
     its('stderr') { should include 'OpenJDK 64-Bit Server VM' }
     its('exit_status') { should eq 0 }
   end

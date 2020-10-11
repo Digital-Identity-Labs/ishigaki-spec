@@ -1,7 +1,7 @@
 control "java_crypto" do
   impact 1.0
   title "Java crypto licensing extension are installed"
-  desc "Zulu and Oracle Java ship with nerfed crypto that can be unlocked with optional files"
+  desc "Java versions can ship with nerfed crypto that can be unnerfed with optional files"
 
   describe file('/opt/misc/Test.java') do
     it {should exist}

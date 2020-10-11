@@ -5,7 +5,7 @@ control "shibboleth_idp_service_is_running" do
 
   describe http('http://localhost:8080/idp/status', open_timeout: 90) do
     its('status') { should cmp 200 }
-    its('body') { should include 'idp_version: 3.' }
+    its('body') { should include 'idp_version: 4.' }
   end
 
 end
