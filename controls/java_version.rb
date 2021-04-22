@@ -10,7 +10,7 @@ control "java_version" do
 
   describe package('java-11-amazon-corretto-jdk') do
     it { should be_installed }
-    its('version') { should >= '1:11.0.8.10-1' }
+    its('version') { should match /^1:11/ }
   end
 
   describe file('/usr/lib/jvm/java-11-amazon-corretto') do
