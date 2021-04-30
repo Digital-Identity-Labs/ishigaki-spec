@@ -10,7 +10,7 @@ control "tidy_files" do
   describe file('/usr/local/src/*') do
     it {should_not exist}
   end
-  describe command('ls -l /usr/local/src/ | wc -l | xargs echo -n') do
+  describe command('ls -l /usr/local/src/ | grep -v plugins | wc -l | grep -v plugins | xargs echo -n') do
     its('stdout') { should eq "1" }
   end
 
