@@ -26,7 +26,7 @@ control "jetty_write_access_is_limited" do
     end
   end
 
-  describe file('/var/opt/jetty/tmp') do
+  describe file('/opt/jetty-shib/tmp') do
     it {should be_directory}
     its('owner') {should eq 'jetty'}
     it {should be_writable.by 'owner'}
