@@ -12,7 +12,7 @@ control "jetty_version" do
   end
 
   describe file('/opt/jetty/VERSION.txt') do
-    its('content') { should match(%r{^jetty-9\.4\.}) }
+    its('content') { should match(%r{^jetty-10}) }
   end
 
   describe os_env('JETTY_HOME') do

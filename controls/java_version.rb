@@ -8,12 +8,12 @@ control "java_version" do
     it { should be_enabled }
   end
 
-  describe package('java-11-amazon-corretto-jdk') do
+  describe package('java-17-amazon-corretto-jdk') do
     it { should be_installed }
     its('version') { should match /^1:11/ }
   end
 
-  describe file('/usr/lib/jvm/java-11-amazon-corretto') do
+  describe file('/usr/lib/jvm/java-17-amazon-corretto') do
     it {should exist}
   end
 
@@ -26,11 +26,11 @@ control "java_version" do
   end
 
   describe os_env('JAVA_HOME') do
-    its('content') { should eq "/usr/lib/jvm/java-11-amazon-corretto" }
+    its('content') { should eq "/usr/lib/jvm/java-17-amazon-corretto" }
   end
 
   describe command('java -version') do
-    its('stderr') { should include 'openjdk version "11' }
+    its('stderr') { should include 'openjdk version "17' }
     its('stderr') { should include 'Corretto' }
     its('stderr') { should include 'OpenJDK 64-Bit Server VM' }
     its('exit_status') { should eq 0 }
