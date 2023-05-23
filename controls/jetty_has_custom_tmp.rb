@@ -10,7 +10,7 @@ control "jetty_has_custom_tmp" do
     it { should be_writable.by  'owner' }
   end
 
-  describe file('/opt/jetty-shib/start.ini') do
+  describe file('/opt/jetty-shib/start.d/start.ini') do
     its('content') { should include "-Djava.io.tmpdir=/opt/jetty-shib/tmp"}
   end
 
