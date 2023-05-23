@@ -6,7 +6,7 @@ control "jetty_has_custom_tmp" do
   describe file('/opt/jetty-shib/tmp') do
     it { should be_directory }
     its('owner') { should eq 'jetty' }
-    its('mode') { should cmp '0755' }
+    its('mode') { should cmp '0770' }
     it { should be_writable.by  'owner' }
   end
 
