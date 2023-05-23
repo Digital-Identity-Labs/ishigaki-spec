@@ -3,7 +3,7 @@ control "jetty_has_custom_tmp" do
   title "Jetty uses a dedicated tmp directory"
   desc "Jetty uses a dedicated tmp for Shibboleth IdP, to avoid /tmp tidying causing problems"
 
-  describe file('/var/opt/jetty-shib/tmp') do
+  describe file('/opt/jetty-shib/tmp') do
     it { should be_directory }
     its('owner') { should eq 'jetty' }
     its('mode') { should cmp '0755' }
@@ -11,11 +11,11 @@ control "jetty_has_custom_tmp" do
   end
 
   describe file('/opt/jetty-shib/start.ini') do
-    its('content') { should include "-Djava.io.tmpdir=/var/opt/jetty-shib/tmp"}
+    its('content') { should include "-Djava.io.tmpdir=/opt/jetty-shib/tmp"}
   end
 
   describe command('ps -aux | grep /usr/lib/jvm/java') do
-    its('stdout') { should include "-Djava.io.tmpdir=/var/opt/jetty-shib/tmp" }
+    its('stdout') { should include "-Djava.io.tmpdir=/opt/jetty-shib/tmp" }
   end
 
 

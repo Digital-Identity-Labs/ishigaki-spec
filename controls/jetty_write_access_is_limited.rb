@@ -10,15 +10,15 @@ control "jetty_write_access_is_limited" do
     its('mode') {should cmp '0755'}
   end
 
-  %w[bin etc lib modules resources start.ini start.jar webapps].each do |dir|
+  %w[bin etc lib modules start.jar].each do |dir|
     describe file("/opt/jetty/#{dir}") do
       its('owner') {should eq 'root'}
-      its('group') {should eq 'staff'}
+      its('group') {should eq 'root'}
       it { should_not be_writable.by_user('jetty') }
     end
   end
 
-  %w[etc start.d start.ini webapps].each do |dir|
+  %w[etc start.d webapps].each do |dir|
     describe file("/opt/jetty-shib/#{dir}") do
       its('owner') {should eq 'root'}
       its('group') {should eq 'root'}
