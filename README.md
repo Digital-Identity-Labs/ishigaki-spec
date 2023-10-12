@@ -9,9 +9,10 @@ Ishigaki Spec is an Inspec profile containing specs/tests for checking that the 
  containers based on Ishigaki have been built correctly, or even check that independent projects are 
  Ishigaki Spec compatible.
  
- ## How do I use it?
+## Please Note
+
+These specs are only for earlier versions of Ishigaki (v3.n).
+
+The current Ishigaki repo now contains a more recent copy of these specs suited for Ishigaki 4 and higher. 
  
  ...
- 
- 
- 
